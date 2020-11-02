@@ -1,0 +1,49 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "width": 400,
+  "height": 200,
+  "padding": 5,
+  "title": "Bundle performance",
+  "data": {
+    "url": "perf-result.json"
+  },
+  "transform": [
+    {
+      "filter": "datum.command !== 'metro --resetCache'"
+    }
+  ],
+  "encoding": {
+    "y": {
+      "field": "command",
+      "type": "nominal"
+    },
+    "x": {
+      "field": "average",
+      "type": "quantitative",
+      "title": "seconds"
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "height": 15,
+        "color": "darkorange"
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 3
+      },
+      "encoding": {
+        "text": {
+          "field": "average",
+          "type": "quantitative"
+        }
+      }
+    }
+  ]
+}

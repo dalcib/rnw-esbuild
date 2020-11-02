@@ -4,17 +4,22 @@
     "react": "~16.13.0",
     "react-dom": "~16.13.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.2.tar.gz",
-    "react-native-web": "0.13.13"
+    "react-native-cli": "^2.0.1",
+    "react-native-web": "0.13.13",
+    "vlq": "^1.0.1"
   },
   "devDependencies": {
-    "@babel/core": "7.9.0"
+    "@babel/core": "7.9.0",
+    "patch-package": "^6.2.2"
   },
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "postinstall": "patch-package",
+    "esbuild": "esbuild --bundle node_modules/expo/AppEntry.js --outfile=./web-esbuild/bundle.js --resolve-extensions=.web.jsx,.web.js,.jsx,.js --loader:.js=jsx  --define:process.env.NODE_ENV='\"production\"' --tsconfig=jsconfig.json --minify --sourcemap"
   },
   "private": true
 }
